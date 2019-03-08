@@ -1,0 +1,55 @@
+import React, { useState, useCallback } from 'react';
+// import logo from './logo.svg';
+import './App.css';
+import Person from './Person/Person';
+
+const app = props => {
+
+	const [ personsState, setPersonsState ] = useState({
+		persons : [
+			{ name : "Chris", age : "25"},
+			{ name : "Max" , age : "28" },
+			{ name : "Rob" , age : "32" }
+		],
+		otherState: "Some other value"
+	});
+
+	const [otherState, setOtherState] = useState('some other value');
+
+	console.log(personsState, otherState);
+
+	const switchNameHandler = useCallback(
+		newName => {
+			// console.log("was clicked");
+			// TODO: Figure out callbacks to bind function
+			setPersonsState({
+				persons : [
+					{ name : newName, age : "25"},
+					{ name : "Max" , age : "28" },
+					{ name : "Rob" , age : "35" }
+				],
+			});
+		}
+	); 
+
+	return (
+		<div className="App">
+			<h3>This is a react app</h3>
+			<p>This is working :)</p>
+			<button onClick={switchNameHandler}>Switch Name</button>
+			<Person 
+				name={personsState.persons[0].name} 
+				age={personsState.persons[0].age} />
+			<Person 
+				name={personsState.persons[1].name} 
+				age={personsState.persons[1].age}
+				click={switchNameHandler}
+			>I like to race</Person>
+			<Person 
+				name={personsState.persons[2].name} 
+				age={personsState.persons[2].age}  />
+		</div>
+	);
+}
+	
+export default app;
