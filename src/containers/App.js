@@ -20,6 +20,11 @@ class App extends Component {
   //   console.log("[App.js] componentWillMount");
   // }
 
+  getSnapshotBeforeUpdate() {
+    console.log("[App.js] getSnapshotBeforeUpdate");
+    return null;
+  }
+
   componentDidMount() {
     console.log("[App.js] componentDidMount");
   }
